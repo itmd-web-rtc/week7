@@ -16,6 +16,18 @@ if ('mediaDevices' in navigator){
         })
     })
 
+    let desktopButton = document.querySelector('#share-desktop')
+    desktopButton.addEventListener('click', function() {
+        navigator.mediaDevices.getDisplayMedia()
+        .then(function(stream){
+            let desktopVideo = document.querySelector('#desktop')
+            desktopVideo.srcObject = stream;
+        })
+        .catch(function(erro){
+            console.error('Stream error:', error)
+        })
+    })
+
     function showDevices() {
         navigator.mediaDevices.enumerateDevices()
         .then(function(devices){
